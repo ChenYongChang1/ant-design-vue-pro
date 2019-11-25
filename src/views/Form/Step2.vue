@@ -1,5 +1,5 @@
 <template>
   <div>
-    分析页
+    step2
   </div>
 </template>

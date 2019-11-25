@@ -7,11 +7,12 @@
         v-if="navLayout === 'left'"
         collapsible
         v-model="collapsed"
+        width="256px"
       >
         <div class="logo">
           Ant Design Pro
         </div>
-        <Sidbar />
+        <Sidbar :theme="navTheme" />
       </a-layout-sider>
       <a-layout>
         <a-layout-header style="background: #fff; padding: 0">
@@ -64,6 +65,8 @@ export default {
 .logo {
   height: 64px;
   line-height: 64px;
+  text-align: center;
+  overflow: hidden;
   // background: rgba(255, 255, 255, 0.2);
   // margin: 16px;
 }
