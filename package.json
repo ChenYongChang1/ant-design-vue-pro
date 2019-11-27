@@ -12,6 +12,7 @@
     "antd": "^3.25.2",
     "babel-plugin-import": "^1.12.2",
     "core-js": "^3.3.2",
+    "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "nprogress": "^0.2.0",
     "vue": "^2.6.10",

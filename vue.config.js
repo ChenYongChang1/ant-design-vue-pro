@@ -1,9 +1,12 @@
 module.exports = {
-    css: {
-        loaderOptions: {
-            less: {
-                javascriptEnabled: true
-            }
-        }
-    }
-}
+  publicPath: './',
+  outputDir: 'dist',
+  assetsDir: 'static',
+  css: {
+    loaderOptions: {
+      less: {
+        javascriptEnabled: true,
+      },
+    },
+  },
+};

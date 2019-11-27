@@ -40,6 +40,7 @@
  * SubMenu1.vue https://github.com/vueComponent/ant-design-vue/blob/master/components/menu/demo/SubMenu1.vue
  * */
 import SubMenu from './SubMenu';
+import { checkAuth } from './../../../router/auth';
 export default {
   components: {
     'sub-menu': SubMenu,
@@ -64,7 +65,10 @@ export default {
     },
     getMenuData(routes) {
       const menuData = [];
-      routes.forEach(item => {
+      for (let item of routes) {
+        if (item.meta && item.meta.auth && !checkAuth(item.meta.auth)) {
+          continue;
+        }
         if (item.name && !item.hideInMenu) {
           const newItem = { ...item };
           delete newItem.children;
@@ -75,7 +79,7 @@ export default {
         } else if (!item.hideInMenu && !item.hideChildInMune && item.children) {
           menuData.push(...this.getMenuData(item.children));
         }
-      });
+      }
       return menuData;
     },
     onOpenChange(openKeys) {

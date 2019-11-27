@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import { checkAuth } from './auth';
+import findLast from 'lodash/findLast';
 
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
@@ -22,6 +24,7 @@ const routes = [
         meta: {
           icon: 'dashboard',
           title: '仪表盘',
+          auth: ['admin'],
         },
         redirect: '/dashboard/analysis',
         component: () =>
@@ -56,7 +59,7 @@ const routes = [
       {
         path: '/form',
         name: 'form',
-        meta: { icon: 'form', title: '表单' },
+        meta: { icon: 'form', title: '表单', auth: ['admin', 'user'] },
         component: () =>
           import(
             /* webpackChunkName: "Layout" */ '../components/layouts/FormLayout.vue'
@@ -100,6 +103,18 @@ const routes = [
           },
         ],
       },
+      {
+        path: '/403',
+        component: () =>
+          import(
+            /* webpackChunkName: "ERROR" */ '../views/Error/Forbidden.vue'
+          ),
+      },
+      {
+        path: '/404',
+        component: () =>
+          import(/* webpackChunkName: "ERROR" */ '../views/Error/NotFount.vue'),
+      },
     ],
   },
   {
@@ -142,16 +157,26 @@ const routes = [
 ];
 
 const router = new VueRouter({
-  mode: 'history',
+  // mode: 'history',
   base: process.env.BASE_URL,
   routes,
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.path !== from.path) {
-    NProgress.start();
+  let record = findLast(to.matched, record => record.meta.auth);
+  if (
+    !(record && record.meta && record.meta.auth) ||
+    checkAuth(record.meta.auth)
+  ) {
+    if (to.path !== from.path) {
+      NProgress.start();
+    }
+    next();
+  } else {
+    next({
+      path: '/403',
+    });
   }
-  next();
 });
 
 router.afterEach(() => {
