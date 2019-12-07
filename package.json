@@ -10,8 +10,10 @@
   "dependencies": {
     "ant-design-vue": "^1.4.6",
     "antd": "^3.25.2",
+    "axios": "^0.19.0",
     "babel-plugin-import": "^1.12.2",
     "core-js": "^3.3.2",
+    "echarts": "^4.5.0",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "nprogress": "^0.2.0",

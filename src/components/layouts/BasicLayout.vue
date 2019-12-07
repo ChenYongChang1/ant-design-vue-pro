@@ -17,6 +17,7 @@
       <a-layout>
         <a-layout-header style="background: #fff; padding: 0">
           <a-icon
+            v-auth="['admin']"
             v-if="navLayout === 'left'"
             class="trigger"
             :type="collapsed ? 'menu-unfold' : 'menu-fold'"
@@ -32,7 +33,9 @@
         </a-layout-footer>
       </a-layout>
     </a-layout>
-    <settingDarwer></settingDarwer>
+    <Authorized :auth="['admin']">
+      <settingDarwer></settingDarwer>
+    </Authorized>
   </div>
 </template>
 

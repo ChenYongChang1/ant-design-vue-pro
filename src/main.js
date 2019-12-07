@@ -3,9 +3,21 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 
-// import Antd from 'ant-design-vue'
+import Authorized from './components/Authorzied.vue';
+Vue.component('Authorized', Authorized);
 
-// import 'ant-design-vue/dist/antd.less'
+import { checkAuth } from './router/auth';
+
+import Auth from './directives/auth';
+
+Vue.use(Auth, {
+  name: 'auth',
+  method: (el, binding) => {
+    if (!checkAuth(binding.value)) {
+      el.parentNode && el.parentNode.removeChild(el);
+    }
+  },
+});
 
 import { Button, Menu, Layout, Icon, Drawer, Radio } from 'ant-design-vue';
 
