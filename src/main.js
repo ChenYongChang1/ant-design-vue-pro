@@ -30,6 +30,8 @@ Vue.use(Radio);
 
 Vue.config.productionTip = false;
 
+console.log(process.env, 'devdevdevdev');
+
 new Vue({
   router,
   store,

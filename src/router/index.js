@@ -66,6 +66,15 @@ const routes = [
           ),
         children: [
           {
+            path: '/form/FromBasic',
+            name: 'fromBasic',
+            meta: { title: '基本表单' },
+            component: () =>
+              import(
+                /* webpackChunkName: "Layout" */ '../views/Form/FromBasic.vue'
+              ),
+          },
+          {
             path: '/form/stepform',
             name: 'stepform',
             meta: { title: '分部表单' },

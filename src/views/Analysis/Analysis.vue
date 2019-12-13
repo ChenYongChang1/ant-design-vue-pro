@@ -12,6 +12,7 @@ export default {
       userName: 'cyc',
       userPassword: 'Asd12345!',
     });
+    console.log(process.env);
     console.log(res);
   },
   components: {
